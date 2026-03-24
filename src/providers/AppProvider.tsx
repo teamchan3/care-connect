@@ -2,6 +2,7 @@
 
 import { FirebaseProvider } from "./FirebaseProvider";
 import { useGlobalLoadingStore } from "@/stores/globalLoadingStore";
+import { debugConfig } from "@/config/debug";
 
 type AppProviderProps = {
   children: React.ReactNode;
@@ -11,9 +12,8 @@ export function AppProvider({ children }: AppProviderProps) {
   const isAnyLoading = useGlobalLoadingStore((state) => state.isAnyLoading());
   const loadings = useGlobalLoadingStore((state) => state.loadings);
 
-  // デバッグ用：環境変数でローディングを強制表示
-  const debugLoading = process.env.NEXT_PUBLIC_DEBUG_LOADING === "true";
-  const showLoading = debugLoading || isAnyLoading;
+  // デバッグ用：常にローディング画面を表示
+  const showLoading = debugConfig.loading.alwaysShow || isAnyLoading;
 
   return (
     <FirebaseProvider>
