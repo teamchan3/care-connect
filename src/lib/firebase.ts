@@ -20,7 +20,7 @@ export const db = getFirestore(app);
 
 // 開発環境でエミュレータに接続
 if (process.env.NEXT_PUBLIC_USE_FIREBASE_EMULATOR === "true") {
-  connectAuthEmulator(auth, "http://localhost:9099");
-  connectFirestoreEmulator(db, "localhost", 8080);
+  connectAuthEmulator(auth, "http://localhost:20001");
+  connectFirestoreEmulator(db, "localhost", 20002);
   console.log("🔧 Firebase Emulator に接続しました");
 }

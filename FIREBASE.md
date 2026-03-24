@@ -22,9 +22,9 @@ care-connect/
 ```bash
 npm run firebase:emulators
 ```
-- Firebase Emulator UIが起動します（http://localhost:4000）
-- Firestore: http://localhost:8080
-- Auth: http://localhost:9099
+- Firebase Emulator UIが起動します（http://localhost:20003）
+- Auth: http://localhost:20001
+- Firestore: http://localhost:20002
 
 ### セキュリティルールのデプロイ
 ```bash
@@ -60,8 +60,8 @@ import { connectAuthEmulator } from "firebase/auth";
 
 // 開発環境でエミュレータに接続
 if (process.env.NEXT_PUBLIC_USE_FIREBASE_EMULATOR === 'true') {
-  connectFirestoreEmulator(db, 'localhost', 8080);
-  connectAuthEmulator(auth, 'http://localhost:9099');
+  connectAuthEmulator(auth, 'http://localhost:20001');
+  connectFirestoreEmulator(db, 'localhost', 20002);
 }
 ```
 
@@ -96,9 +96,9 @@ firebase emulators:start --import=./firestore-seed
 ### エミュレータが起動しない
 ```bash
 # ポートが使用中の場合
-lsof -ti:4000 | xargs kill -9
-lsof -ti:8080 | xargs kill -9
-lsof -ti:9099 | xargs kill -9
+lsof -ti:20001 | xargs kill -9
+lsof -ti:20002 | xargs kill -9
+lsof -ti:20003 | xargs kill -9
 ```
 
 ### 本番環境との切り替え

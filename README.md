@@ -52,9 +52,9 @@ Firebaseエミュレータを使用してローカル開発できます：
 npm run firebase:emulators
 ```
 
-- Firebase Emulator UI: http://localhost:4000
-- Firestore: http://localhost:8080
-- Auth: http://localhost:9099
+- Firebase Emulator UI: http://localhost:20003
+- Auth: http://localhost:20001
+- Firestore: http://localhost:20002
 
 エミュレータを使用する場合は、`.env.local`に以下を追加：
 
