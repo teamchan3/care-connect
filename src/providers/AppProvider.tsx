@@ -1,15 +1,15 @@
 "use client";
 
 import { FirebaseProvider } from "./FirebaseProvider";
-import { useLoadingStore } from "@/stores/loadingStore";
+import { useGlobalLoadingStore } from "@/stores/globalLoadingStore";
 
 type AppProviderProps = {
   children: React.ReactNode;
 };
 
 export function AppProvider({ children }: AppProviderProps) {
-  const isAnyLoading = useLoadingStore((state) => state.isAnyLoading());
-  const loadings = useLoadingStore((state) => state.loadings);
+  const isAnyLoading = useGlobalLoadingStore((state) => state.isAnyLoading());
+  const loadings = useGlobalLoadingStore((state) => state.loadings);
 
   // デバッグ用：環境変数でローディングを強制表示
   const debugLoading = process.env.NEXT_PUBLIC_DEBUG_LOADING === "true";

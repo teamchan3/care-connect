@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { useAuthStore } from "@/stores/authStore";
-import { useLoadingStore } from "@/stores/loadingStore";
+import { useGlobalLoadingStore } from "@/stores/globalLoadingStore";
 
 type FirebaseProviderProps = {
   children: React.ReactNode;
@@ -12,7 +12,7 @@ type FirebaseProviderProps = {
 
 export function FirebaseProvider({ children }: FirebaseProviderProps) {
   const setUser = useAuthStore((state) => state.setUser);
-  const setLoading = useLoadingStore((state) => state.setLoading);
+  const setLoading = useGlobalLoadingStore((state) => state.setLoading);
 
   useEffect(() => {
     // Firebase認証の初期化開始
