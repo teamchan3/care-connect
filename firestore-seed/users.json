@@ -1,0 +1,20 @@
+{
+  "user1": {
+    "name": "田中太郎",
+    "email": "tanaka@example.com",
+    "role": "caregiver",
+    "createdAt": {
+      "__datatype__": "timestamp",
+      "value": "2024-01-01T00:00:00Z"
+    }
+  },
+  "user2": {
+    "name": "佐藤花子",
+    "email": "sato@example.com",
+    "role": "care_seeker",
+    "createdAt": {
+      "__datatype__": "timestamp",
+      "value": "2024-01-02T00:00:00Z"
+    }
+  }
+}

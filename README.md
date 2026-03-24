@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CareConnect
 
-## Getting Started
+介護事業者と介助を必要としている方をつなぐプラットフォーム
 
-First, run the development server:
+## 技術スタック
+
+- **フレームワーク**: Next.js 16.2.1 (App Router)
+- **言語**: TypeScript
+- **UI**: daisyUI + Tailwind CSS v4
+- **状態管理**: Zustand
+- **バックエンド**: Firebase (Authentication, Firestore)
+
+## セットアップ
+
+### 1. リポジトリのクローン
+
+```bash
+git clone https://github.com/your-username/care-connect.git
+cd care-connect
+```
+
+### 2. 依存関係のインストール
+
+```bash
+npm install
+```
+
+### 3. 環境変数の設定
+
+`.env.local`ファイルを作成し、Firebaseの設定を追加：
+
+```bash
+cp .env.local.example .env.local
+```
+
+[Firebase Console](https://console.firebase.google.com/)でプロジェクトを作成し、`.env.local`に認証情報を設定してください。
+
+### 4. 開発サーバーの起動
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+http://localhost:3000 でアプリケーションが起動します。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ローカル開発（Firebase Emulator）
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Firebaseエミュレータを使用してローカル開発できます：
 
-## Learn More
+```bash
+# エミュレータを起動
+npm run firebase:emulators
+```
 
-To learn more about Next.js, take a look at the following resources:
+- Firebase Emulator UI: http://localhost:4000
+- Firestore: http://localhost:8080
+- Auth: http://localhost:9099
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+エミュレータを使用する場合は、`.env.local`に以下を追加：
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```env
+NEXT_PUBLIC_USE_FIREBASE_EMULATOR=true
+```
 
-## Deploy on Vercel
+詳しくは [FIREBASE.md](./FIREBASE.md) を参照してください。
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## スクリプト
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run dev                      # 開発サーバー起動
+npm run build                    # プロダクションビルド
+npm run start                    # プロダクションサーバー起動
+npm run lint                     # ESLint実行
+npm run firebase:emulators       # Firebaseエミュレータ起動
+npm run firebase:deploy          # Firebaseデプロイ
+npm run firebase:deploy:rules    # Firestoreルールのみデプロイ
+```
+
+## プロジェクト構造
+
+```
+care-connect/
+├── src/
+│   ├── app/                 # Next.js App Router
+│   ├── components/          # Reactコンポーネント
+│   ├── lib/                 # ライブラリ（Firebase設定など）
+│   ├── providers/           # Providerコンポーネント
+│   └── stores/              # Zustand状態管理
+├── firestore.rules          # Firestoreセキュリティルール
+├── firebase.json            # Firebase設定
+└── .firebaserc              # Firebaseプロジェクト設定
+```
+
+## ライセンス
+
+MIT
