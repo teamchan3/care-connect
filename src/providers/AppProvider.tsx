@@ -2,6 +2,7 @@
 
 import { FirebaseProvider } from "./FirebaseProvider";
 import { useGlobalLoadingStore } from "@/stores/globalLoadingStore";
+import { useAuthStore } from "@/stores/authStore";
 import { debugConfig } from "@/config/debug";
 
 type AppProviderProps = {
@@ -9,6 +10,7 @@ type AppProviderProps = {
 };
 
 export function AppProvider({ children }: AppProviderProps) {
+  const isInitializing = useAuthStore((state) => state.isInitializing);
   const isAnyLoading = useGlobalLoadingStore((state) => state.isAnyLoading());
   const loadings = useGlobalLoadingStore((state) => state.loadings);
 
@@ -17,20 +19,30 @@ export function AppProvider({ children }: AppProviderProps) {
 
   return (
     <FirebaseProvider>
-      {showLoading ? (
-        <div className="min-h-screen flex flex-col items-center justify-center gap-4">
-          <span className="loading loading-spinner loading-lg"></span>
-          {Object.entries(loadings)
-            .filter(([, loading]) => loading.isLoading && loading.message)
-            .map(([type, loading]) => (
-              <p key={type} className="text-sm text-gray-600">
-                {loading.message}
-              </p>
-            ))}
-        </div>
-      ) : (
-        children
-      )}
+      {(() => {
+        if (isInitializing) {
+          return (
+            <div className="min-h-screen flex flex-col items-center justify-center gap-4">
+              <span className="loading loading-spinner loading-lg"></span>
+            </div>
+          );
+        }
+        if (showLoading) {
+          return (
+            <div className="min-h-screen flex flex-col items-center justify-center gap-4">
+              <span className="loading loading-spinner loading-lg"></span>
+              {Object.entries(loadings)
+                .filter(([, loading]) => loading.isLoading && loading.message)
+                .map(([type, loading]) => (
+                  <p key={type} className="text-sm text-gray-600">
+                    {loading.message}
+                  </p>
+                ))}
+            </div>
+          )
+        }
+        return children;
+      })()}
     </FirebaseProvider>
   );
 }

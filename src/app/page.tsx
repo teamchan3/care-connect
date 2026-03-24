@@ -7,6 +7,7 @@ import { signInWithGoogle, signOut } from "@/lib/auth";
 export default function Home() {
   const user = useAuthStore((state) => state.user);
   const setLoading = useGlobalLoadingStore((state) => state.setLoading);
+  const isInitializing = useAuthStore((state) => state.isInitializing);
 
   const handleLogin = async () => {
     try {
@@ -23,7 +24,7 @@ export default function Home() {
     try {
       setLoading("auth", true, "ログアウト中...");
       await signOut();
-      //ログインしたら、FirebaseProvider側でuseEffectが呼ばれて、結果的にsetLoading("auth", false)が呼ばれるので、ここではローディングを開始するだけでOK
+      //ログアウトしたら、FirebaseProvider側でuseEffectが呼ばれて、結果的にsetLoading("auth", false)が呼ばれるので、ここではローディングを開始するだけでOK
     } catch (error) {
       console.error("ログアウトエラー:", error);
       alert("ログアウトに失敗しました");
@@ -33,6 +34,9 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       {(() => {
+        if (isInitializing) {
+          return null;
+        }
         // ログインしていない場合
         if (!user) {
           return (
