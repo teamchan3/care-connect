@@ -12,12 +12,10 @@ export default function Home() {
     try {
       setLoading("auth", true, "ログイン中...");
       await signInWithGoogle();
-      // onAuthStateChangedが自動的に呼ばれ、useAuthStoreが更新される
+      //ログインしたら、FirebaseProvider側でuseEffectが呼ばれて、結果的にsetLoading("auth", false)が呼ばれるので、ここではローディングを開始するだけでOK
     } catch (error) {
       console.error("ログインエラー:", error);
       alert("ログインに失敗しました");
-    } finally {
-      setLoading("auth", false);
     }
   };
 
@@ -25,12 +23,10 @@ export default function Home() {
     try {
       setLoading("auth", true, "ログアウト中...");
       await signOut();
-      // onAuthStateChangedが自動的に呼ばれ、useAuthStoreが更新される
+      //ログインしたら、FirebaseProvider側でuseEffectが呼ばれて、結果的にsetLoading("auth", false)が呼ばれるので、ここではローディングを開始するだけでOK
     } catch (error) {
       console.error("ログアウトエラー:", error);
       alert("ログアウトに失敗しました");
-    } finally {
-      setLoading("auth", false);
     }
   };
 
