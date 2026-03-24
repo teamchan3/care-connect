@@ -41,8 +41,7 @@ export default function Home() {
         if (!user) {
           return (
             <div className="text-center">
-              <h1 className="text-2xl font-bold mb-4">未ログイン</h1>
-              <p className="text-gray-600 mb-4">ログインしてください</p>
+              <h1 className="text-2xl font-bold mb-4">介護事業書管理アプリ</h1>
               <button className="btn btn-primary" onClick={handleLogin}>
                 Googleでログイン
               </button>
