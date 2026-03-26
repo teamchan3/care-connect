@@ -9,6 +9,8 @@ export default function Header() {
   // const user = useAuthStore((state) => state.user);
   // const setLoading = useGlobalLoadingStore((state) => state.setLoading);
   const { user, handleLogout } = useAuth();
+
+  const initials = user?.email?.split('@')[0]?.slice(0, 2).toUpperCase();
   
   return (
     <header className={`bg-base-100/90`}>
@@ -21,12 +23,10 @@ export default function Header() {
             return (
               <div className="flex gap-2">
                 <div className="dropdown dropdown-end">
-                  <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                    <div className="w-10 rounded-full">
-                      <img
-                        alt="Tailwind CSS Navbar component"
-                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" width={40} height={40} />
-                    </div>
+                  <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar avatar-placeholder">
+                  <div className="bg-neutral text-neutral-content w-24 rounded-full">
+                    <span className="text-xs">{initials}</span>
+                  </div>
                   </div>
                   <ul
                     tabIndex={-1}
