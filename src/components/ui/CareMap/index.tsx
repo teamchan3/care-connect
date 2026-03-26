@@ -1,15 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import {
   APIProvider,
   Map as GoogleMap,
   Marker,
 } from "@vis.gl/react-google-maps";
+import { useState } from "react";
 import { useCareProviderStore } from "@/stores/careProviderStore";
 import AddCareProviderModal from "./AddCareProviderModal";
 
-export default function Map() {
+export default function CareMap() {
   const [isAddCareProviderModalOpen, setIsAddCareProviderModalOpen] =
     useState(false);
   const careProviders = useCareProviderStore((state) => state.careProviders);

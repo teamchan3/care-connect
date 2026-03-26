@@ -1,52 +1,36 @@
 "use client";
 
 import { useState } from "react";
-import type { MapEntity } from "@/types/mapEntity";
+import { useGeocode } from "@/hooks/useGeocode";
+import type { CareProvider } from "@/types/careProvider";
 
-interface AddCareProviderModalProps {
+type AddCareProviderModalProps = {
   isOpen: boolean;
   onClose: () => void;
-}
+};
 
 export default function AddCareProviderModal({
   isOpen,
   onClose,
 }: AddCareProviderModalProps) {
-  const [formData, setFormData] = useState<Partial<MapEntity>>({
+  const [formData, setFormData] = useState<Partial<CareProvider>>({
     name: "",
     address: "",
     position: undefined,
   });
-  const [isGeocoding, setIsGeocoding] = useState(false);
+  const { geocode, isGeocoding } = useGeocode();
 
   const handleGeocode = async () => {
     if (!formData.address?.trim()) {
       return;
     }
 
-    setIsGeocoding(true);
+    const position = await geocode(formData.address);
 
-    try {
-      const geocoder = new google.maps.Geocoder();
-
-      const result = await geocoder.geocode({
-        address: formData.address,
-      });
-
-      if (result.results?.[0]) {
-        const location = result.results[0].geometry.location;
-        setFormData((prev) => ({
-          ...prev,
-          position: { lat: location.lat(), lng: location.lng() },
-        }));
-      } else {
-        setFormData((prev) => ({ ...prev, position: undefined }));
-      }
-    } catch (error) {
-      console.error("Geocoding error:", error);
+    if (position) {
+      setFormData((prev) => ({ ...prev, position }));
+    } else {
       setFormData((prev) => ({ ...prev, position: undefined }));
-    } finally {
-      setIsGeocoding(false);
     }
   };
 

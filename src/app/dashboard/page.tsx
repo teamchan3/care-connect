@@ -3,8 +3,8 @@
 // import { useAuthStore } from "@/stores/authStore";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import CareMap from "@/components/ui/CareMap";
 import { useAuth } from "@/hooks/useAuth";
-import Map from "@/components/ui/Map";
 
 export default function Dashboard() {
   // const user = useAuthStore((state) => state.user);
@@ -20,7 +20,7 @@ export default function Dashboard() {
 
   return (
     <div className="h-full w-full">
-      <Map />
+      <CareMap />
     </div>
   );
 }

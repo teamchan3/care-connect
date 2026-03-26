@@ -1,6 +1,6 @@
-import { MapEntity } from "./mapEntity";
-import { CareServiceType } from "@/constants/careServices";
-import { AvailableService } from "@/constants/availableServices";
+import type { AvailableService } from "@/constants/availableServices";
+import type { CareServiceType } from "@/constants/careServices";
+import type { MapEntity } from "./mapEntity";
 
 export type CareProvider = MapEntity & {
   phoneNumber: string;
