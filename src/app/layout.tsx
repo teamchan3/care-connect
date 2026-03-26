@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/globals/Header";
+import Header from "@/components/layout/Header";
 import { AppProvider } from "@/providers/AppProvider";
 
 export const metadata: Metadata = {
@@ -19,10 +19,10 @@ export default function RootLayout({
       className={`h-full antialiased`}
       data-theme="light"
     >
-      <body className="min-h-full flex flex-col">
+      <body className="h-screen flex flex-col">
         <AppProvider>
           <Header />
-          <main>
+          <main className="flex-1 overflow-hidden">
             {children}
           </main>
         </AppProvider>

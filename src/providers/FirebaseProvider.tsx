@@ -16,11 +16,11 @@ export function FirebaseProvider({ children }: FirebaseProviderProps) {
   const setLoading = useGlobalLoadingStore((state) => state.setLoading);
 
   useEffect(() => {
-    // Firebase認証の初期化開始
-    setLoading("auth", true, "認証情報を確認中...");
-
     // Firebase認証状態の監視
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      // 認証状態変更の処理開始（ログイン/ログアウト/初回確認）
+      setLoading("auth", true, "認証情報を確認中...");
+
       // デバッグモード：認証処理を遅延させる
       if (debugConfig.loading.auth.enabled) {
         await new Promise((resolve) =>
