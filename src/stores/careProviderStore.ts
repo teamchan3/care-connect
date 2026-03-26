@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { CareProvider } from "@/types/careProvider";
+import { MOCK_CARE_PROVIDERS } from "@/data/mockCareProviders";
 
 type CareProviderStore = {
   careProviders: CareProvider[];
@@ -11,7 +12,7 @@ type CareProviderStore = {
 };
 
 export const useCareProviderStore = create<CareProviderStore>((set, get) => ({
-  careProviders: [],
+  careProviders: MOCK_CARE_PROVIDERS,
 
   setCareProviders: (careProviders) => set({ careProviders }),
 

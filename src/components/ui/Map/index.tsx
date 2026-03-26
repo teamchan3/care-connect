@@ -1,9 +1,11 @@
 "use client";
 
 import { APIProvider, Map as GoogleMap, Marker } from '@vis.gl/react-google-maps';
+import { useCareProviderStore } from '@/stores/careProviderStore';
 
 
 export default function Map() {
+  const careProviders = useCareProviderStore((state) => state.careProviders);
 
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   if (!apiKey) {
@@ -12,10 +14,6 @@ export default function Map() {
 
   const center = { lat: 35.6762, lng: 139.6503 }; // 東京
   const zoom = 13;
-
-  const markers = [
-    { position: center, title: '東京' },
-  ];
 
   return (
     <div className="h-full w-full">
@@ -28,8 +26,12 @@ export default function Map() {
           gestureHandling="greedy"
           style={{ width: '100%', height: '100%' }}
         >
-          {markers.map((marker, index) => (
-            <Marker key={index} position={marker.position} title={marker.title} />
+          {careProviders.map((provider) => (
+            <Marker
+              key={provider.id}
+              position={provider.position}
+              title={provider.name}
+            />
           ))}
         </GoogleMap>
       </APIProvider>
