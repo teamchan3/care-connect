@@ -32,6 +32,11 @@ type DebugConfig = {
   zustand: {
     devtools: boolean; // Zustand DevToolsの有効化
   };
+
+  // データ関連
+  data: {
+    useMockData: boolean; // モックデータを使用する
+  };
 };
 
 // デフォルト設定（本番環境用）
@@ -48,6 +53,9 @@ const defaultConfig: DebugConfig = {
   },
   zustand: {
     devtools: false,
+  },
+  data: {
+    useMockData: false, // 本番環境では絶対にfalse
   },
 };
 
@@ -71,6 +79,9 @@ const developmentConfig: DebugConfig = {
   },
   zustand: {
     devtools: true, // Zustand DevToolsを使用する場合 true
+  },
+  data: {
+    useMockData: true, // モックデータを使用する場合 true
   },
 };
 
