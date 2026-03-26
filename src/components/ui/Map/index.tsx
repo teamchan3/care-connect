@@ -7,6 +7,7 @@ import {
   Marker,
 } from "@vis.gl/react-google-maps";
 import { useCareProviderStore } from "@/stores/careProviderStore";
+import AddCareProviderModal from "./AddCareProviderModal";
 
 export default function Map() {
   const [isAddCareProviderModalOpen, setIsAddCareProviderModalOpen] =
@@ -67,19 +68,10 @@ export default function Map() {
         </button>
       </div>
 
-      <dialog
-        id="add-care-provider-modal"
-        className="modal"
-        open={isAddCareProviderModalOpen}
+      <AddCareProviderModal
+        isOpen={isAddCareProviderModalOpen}
         onClose={() => setIsAddCareProviderModalOpen(false)}
-      >
-        <div className="modal-box">
-          <h3 className="font-bold text-lg">Hello!</h3>
-        </div>
-        <form method="dialog" className="modal-backdrop">
-          <button>close</button>
-        </form>
-      </dialog>
+      />
     </div>
   );
 }
