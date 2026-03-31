@@ -1,17 +1,21 @@
 "use client";
 
-import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
+import { useEffect } from "react";
+import { debugConfig } from "@/config/debug";
 import { auth } from "@/lib/firebase";
 import { useAuthStore } from "@/stores/authStore";
 import { useGlobalLoadingStore } from "@/stores/globalLoadingStore";
-import { debugConfig } from "@/config/debug";
 
-type FirebaseProviderProps = {
+type FirebaseAuthProviderProps = {
   children: React.ReactNode;
 };
 
-export function FirebaseProvider({ children }: FirebaseProviderProps) {
+/**
+ * Firebase認証状態を監視するプロバイダー
+ * 責務: 認証状態の管理のみ
+ */
+export function FirebaseAuthProvider({ children }: FirebaseAuthProviderProps) {
   const setUser = useAuthStore((state) => state.setUser);
   const setLoading = useGlobalLoadingStore((state) => state.setLoading);
 

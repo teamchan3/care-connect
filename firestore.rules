@@ -17,6 +17,14 @@ service cloud.firestore {
       allow update, delete: if request.auth != null && request.auth.uid == resource.data.userId;
     }
 
+    // 介護事業所コレクション
+    match /careProviders/{providerId} {
+      // 認証済みユーザーは読み取り可能
+      allow read: if request.auth != null;
+      // 認証済みユーザーは作成・更新・削除可能（将来的に権限を絞る可能性あり）
+      allow create, update, delete: if request.auth != null;
+    }
+
     // デフォルト：全て拒否
     match /{document=**} {
       allow read, write: if false;

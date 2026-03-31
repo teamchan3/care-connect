@@ -1,3 +1,4 @@
 // 全てのProviderをここからエクスポート
 export { AppProvider } from "./AppProvider";
-export { FirebaseProvider } from "./FirebaseProvider";
+export { CareProviderDataProvider } from "./CareProviderDataProvider";
+export { FirebaseAuthProvider } from "./FirebaseAuthProvider";

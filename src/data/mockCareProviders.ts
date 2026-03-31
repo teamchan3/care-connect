@@ -11,8 +11,11 @@ export const MOCK_CARE_PROVIDERS: CareProvider[] = [
     position: { lat: 35.6762, lng: 139.6503 }, // 東京駅
     address: "東京都千代田区丸の内1-1-1",
     phoneNumber: "03-1234-5678",
-    careServiceTypes: ["デイサービス"],
+    careServiceType: "デイサービス",
     availableServices: ["入浴介助", "食事介助", "レクリエーション", "送迎"],
+    capacity: 20,
+    businessHoursStart: "09:00",
+    businessHoursEnd: "17:00",
   },
   {
     id: "mock-2",
@@ -20,8 +23,11 @@ export const MOCK_CARE_PROVIDERS: CareProvider[] = [
     position: { lat: 35.6895, lng: 139.6917 }, // 新宿
     address: "東京都新宿区西新宿2-8-1",
     phoneNumber: "03-2345-6789",
-    careServiceTypes: ["訪問介護", "訪問看護"],
+    careServiceType: "訪問介護",
     availableServices: ["入浴介助", "食事介助", "排泄介助", "医療的ケア"],
+    capacity: 30,
+    businessHoursStart: "08:00",
+    businessHoursEnd: "18:00",
   },
   {
     id: "mock-3",
@@ -29,7 +35,7 @@ export const MOCK_CARE_PROVIDERS: CareProvider[] = [
     position: { lat: 35.6585, lng: 139.7454 }, // 渋谷
     address: "東京都渋谷区渋谷2-21-1",
     phoneNumber: "03-3456-7890",
-    careServiceTypes: ["グループホーム"],
+    careServiceType: "グループホーム",
     availableServices: [
       "入浴介助",
       "食事介助",
@@ -38,6 +44,9 @@ export const MOCK_CARE_PROVIDERS: CareProvider[] = [
       "認知症ケア",
       "夜間対応",
     ],
+    capacity: 18,
+    businessHoursStart: "00:00",
+    businessHoursEnd: "24:00",
   },
   {
     id: "mock-4",
@@ -45,7 +54,7 @@ export const MOCK_CARE_PROVIDERS: CareProvider[] = [
     position: { lat: 35.7090, lng: 139.8107 }, // 上野
     address: "東京都台東区上野7-1-1",
     phoneNumber: "03-4567-8901",
-    careServiceTypes: ["特別養護老人ホーム"],
+    careServiceType: "特別養護老人ホーム",
     availableServices: [
       "入浴介助",
       "食事介助",
@@ -56,6 +65,9 @@ export const MOCK_CARE_PROVIDERS: CareProvider[] = [
       "看取り対応",
       "栄養管理",
     ],
+    capacity: 100,
+    businessHoursStart: "00:00",
+    businessHoursEnd: "24:00",
   },
   {
     id: "mock-5",
@@ -63,7 +75,7 @@ export const MOCK_CARE_PROVIDERS: CareProvider[] = [
     position: { lat: 35.6284, lng: 139.7386 }, // 品川
     address: "東京都港区港南2-16-1",
     phoneNumber: "03-5678-9012",
-    careServiceTypes: ["小規模多機能型居宅介護"],
+    careServiceType: "小規模多機能型居宅介護",
     availableServices: [
       "入浴介助",
       "食事介助",
@@ -74,5 +86,8 @@ export const MOCK_CARE_PROVIDERS: CareProvider[] = [
       "夜間対応",
       "緊急時対応",
     ],
+    capacity: 25,
+    businessHoursStart: "07:00",
+    businessHoursEnd: "19:00",
   },
 ];
